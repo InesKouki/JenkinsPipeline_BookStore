@@ -6,7 +6,7 @@ pipeline {
     }
     
     environment {
-        APP_NAME = "jenkins-pipeline-test"
+        APP_NAME = "jenkins-pipeline-bookstore"
         RELEASE = "1.0.0"
         DOCKER_USER = "ineskouki"
         DOCKER_PASS = "DOCKER_CRED"
