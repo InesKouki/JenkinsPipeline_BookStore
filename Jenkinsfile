@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Checkout from SCM') {
             steps {
-                git 'https://github.com/InesKouki/jenkinstest.git'
+              git branch: 'main', url: 'https://github.com/InesKouki/JenkinsPipeline_BookStore.git'
             }
         }
        stage("Build Application"){
