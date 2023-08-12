@@ -56,25 +56,15 @@ pipeline {
 	stage("Deploy Docker Image") {
     steps {
         script {
-            def imageName = "${DOCKER_USER}/${APP_NAME}"
-            def imageTag = "${RELEASE}-${BUILD_NUMBER}"
             def containerName = "${APP_NAME}-${BUILD_NUMBER}"
             
-            // Stop and remove the container if it already exists
+            // Start the container if it exists and is stopped
             try {
-                sh "docker stop ${containerName}"
-                sh "docker rm ${containerName}"
+                sh "docker start ${containerName}"
+                echo "Docker container '${containerName}' started."
             } catch (Exception e) {
-                // Ignore errors if the container doesn't exist
+                echo "Docker container '${containerName}' doesn't exist or couldn't be started."
             }
-            
-            // Run the container with port mapping
-            def container_id = docker.run(image: "${imageName}:${imageTag}",
-                                          name: containerName,
-                                          args: "-p 1001:1001 -d")
-            
-            // Print the container ID for reference
-            echo "Docker container ID: ${container_id}"
         }
     }
 }
