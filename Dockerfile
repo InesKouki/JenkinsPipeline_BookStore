@@ -2,9 +2,9 @@
 FROM openjdk:11
 
 # Set environment variables for Spring Boot application
-ENV SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/book?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-ENV SPRING_DATASOURCE_USERNAME=root
-ENV SPRING_DATASOURCE_PASSWORD=
+ENV SPRING_DATASOURCE_URL=jdbc:mysql://sql_server_container:1433/book?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+ENV SPRING_DATASOURCE_USERNAME=sa
+ENV SPRING_DATASOURCE_PASSWORD=Esprit2023
 ENV SPRING_DATASOURCE_DRIVER-CLASS-NAME=com.mysql.cj.jdbc.Driver
 ENV SPRING_JPA_HIBERNATE_DDL-AUTO=update
 ENV SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL57Dialect
