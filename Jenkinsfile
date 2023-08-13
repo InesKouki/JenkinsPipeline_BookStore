@@ -52,7 +52,7 @@ pipeline {
 stage("Deploy Docker Image") {
     steps {
         script {
-            def containerName = "${APP_NAME}-${BUILD_NUMBER}"
+            def containerName = "${APP_NAME}-${IMAGE_TAG}"
             
             // Stop and remove the container if it exists
             try {
@@ -69,11 +69,13 @@ stage("Deploy Docker Image") {
                 sh "docker run -d --name ${containerName} ${IMAGE_NAME}:${IMAGE_TAG}"
                 echo "Docker container '${containerName}' started."
             } catch (Exception e) {
-                echo "Failed to pull or start the Docker container '${containerName}'."
+                echo "Failed to pull or start the Docker container '${containerName}': ${e.message}"
+                currentBuild.result = 'FAILURE'
             }
         }
     }
 }
+
 
 
 
