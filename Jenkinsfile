@@ -64,17 +64,20 @@ stage("Deploy Docker Image") {
             }
             
             // Pull and run the Docker image
-            try {
-                sh "docker pull ${IMAGE_NAME}:${IMAGE_TAG}"
-                sh "docker run -d --name ${containerName} ${IMAGE_NAME}:${IMAGE_TAG}"
-                echo "Docker container '${containerName}' started."
-            } catch (Exception e) {
-                echo "Failed to pull or start the Docker container '${containerName}': ${e.message}"
-                currentBuild.result = 'FAILURE'
+            docker.withRegistry('https://index.docker.io/v1/', DOCKER_PASS) {
+                try {
+                    sh "docker pull ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker run -d --name ${containerName} ${IMAGE_NAME}:${IMAGE_TAG}"
+                    echo "Docker container '${containerName}' started."
+                } catch (Exception e) {
+                    echo "Failed to pull or start the Docker container '${containerName}': ${e.message}"
+                    currentBuild.result = 'FAILURE'
+                }
             }
         }
     }
 }
+
 
 
 
