@@ -38,18 +38,15 @@ pipeline {
         }
 
        stage("Build & Push Docker Image") {
-            steps {
-                script {
-                    docker.withRegistry('',DOCKER_PASS) {
-                        docker_image = docker.build "${IMAGE_NAME}"
-                    }
-
-                    docker.withRegistry('',DOCKER_PASS) {
-                        docker_image.push("${IMAGE_TAG}")
-                        docker_image.push('latest')
-                    }
-                }
+    steps {
+        script {
+            docker.withRegistry('https://index.docker.io/v1/', DOCKER_PASS) {
+                def docker_image = docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
+                docker_image.push()
+                docker_image.push('latest')
             }
+        }
+    }
 }
 
 stage("Deploy Docker Image") {
@@ -77,6 +74,7 @@ stage("Deploy Docker Image") {
         }
     }
 }
+
 
 
 
