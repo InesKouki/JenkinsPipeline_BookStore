@@ -8,7 +8,7 @@ pipeline {
     environment {
        NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "172.18.0.4:8081"
+        NEXUS_URL = "172.26.0.5:8081"
         NEXUS_REPOSITORY = "JenkinsNexus"
         NEXUS_CREDENTIAL_ID = "NEXUS_CRED"
 
