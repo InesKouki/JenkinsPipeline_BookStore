@@ -20,7 +20,7 @@
 	<distributionManagement>
 		<repository>
 			<id>JenkinsNexus</id>
-			<url>http://172.18.0.4:8081/repository/BookStoreRepo/</url>
+			<url>http://172.20.0.5:8081/repository/BookStoreRepo/</url>
 		</repository>
 	</distributionManagement>
 
