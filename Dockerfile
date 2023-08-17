@@ -2,7 +2,7 @@
 FROM openjdk:11
 
 # Set environment variables for Spring Boot application
-ENV SPRING_DATASOURCE_URL=jdbc:sqlserver://172.18.0.2:1433;databaseName=bookstore
+ENV SPRING_DATASOURCE_URL=jdbc:sqlserver://172.20.0.2:1433;databaseName=bookstore
 ENV SPRING_DATASOURCE_USERNAME=sa
 ENV SPRING_DATASOURCE_PASSWORD=Esprit2023
 ENV SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.microsoft.sqlserver.jdbc.SQLServerDriver
