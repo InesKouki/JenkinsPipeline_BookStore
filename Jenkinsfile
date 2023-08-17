@@ -127,7 +127,7 @@ stage("Deploy Docker Image") {
             docker.withRegistry('https://index.docker.io/v1/', DOCKER_PASS) {
                 try {
                     sh "docker pull ${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "docker run -d --name ${containerName} --network desktop_my-network --restart always ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker run -d --name ${containerName} --network desktop_my-network --ip 172.20.0.6 --restart always ${IMAGE_NAME}:${IMAGE_TAG}"
                     echo "Docker container '${containerName}' started."
                 } catch (Exception e) {
                     echo "Failed to pull or start the Docker container '${containerName}': ${e.message}"
