@@ -18,6 +18,8 @@ pipeline {
         DOCKER_PASS = "DOCKER_CRED"
         IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+
+       KUBECONFIG = credentials('MINIKUBE_CRED') // Use the ID of your Kubernetes configuration credentials
        
     }
     stages {
@@ -59,7 +61,7 @@ pipeline {
 stage("Deploy to Minikube") {
             steps {
                 script {
-                    sh 'kubectl apply -f deployment.yml'
+                    sh "kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yml"
                 }
             }
         }
